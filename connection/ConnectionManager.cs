@@ -26,6 +26,8 @@ public class ConnectionManager : MonoBehaviour {
     public GameObject LoginTabGo;
     public GameObject RegisterTabGo;
 
+    public GameObject uiBlockGo;
+
     Text usernameLoginText;
     Text passwordLoginText;
 
@@ -39,7 +41,7 @@ public class ConnectionManager : MonoBehaviour {
     Button LoginTabButton;
     Button RegisterTabButton;
 
-    private userdata jsonUser;
+    private Userdata jsonUser;
 
     public void loginClick()
     {
@@ -72,6 +74,7 @@ public class ConnectionManager : MonoBehaviour {
 
     }
     /*
+    //Todo: Reset InputFields on tab switch / maybe not neccessary!
     public void resetAllInputFields() {
         
         usernameLoginText = usernameLoginGo.GetComponent<Text>();
@@ -167,7 +170,12 @@ public class ConnectionManager : MonoBehaviour {
 
         WWW request = new WWW(loginURL, form);
 
+        uiBlockGo.SetActive(true);
+
         yield return request;
+
+        uiBlockGo.SetActive(false);
+
         if (!string.IsNullOrEmpty(request.error))
         {
             Debug.Log(request.error);
@@ -188,12 +196,13 @@ public class ConnectionManager : MonoBehaviour {
         } else if (request.text.Equals("Failure_User")) {
             responseLoginText = responseLoginGo.GetComponent<Text>();
             responseLoginText.text = "Wrong Username!";
-        }
+       } 
         else {
-            jsonUser = JsonUtility.FromJson<userdata>(request.text);
+            jsonUser = JsonUtility.FromJson<Userdata>(request.text);
             responseLoginText.text = "Logged in";
         }
 
+        //ToDo: save jsonUser -> PlayerManager Object
 
         //Debug.Log(jsonUser.username);
         //Debug.Log(jsonUser.user_email);
@@ -213,7 +222,12 @@ public class ConnectionManager : MonoBehaviour {
 
         Debug.Log(registerURL);
 
+        uiBlockGo.SetActive(true);
+
         yield return request;
+
+        uiBlockGo.SetActive(false);
+
         if (!string.IsNullOrEmpty(request.error))
         {
             Debug.Log(request.error);
@@ -231,7 +245,7 @@ public class ConnectionManager : MonoBehaviour {
 }
 
 [Serializable]
-public class userdata
+public class Userdata : BasePlayer
 {
     public string username = "";
     public string user_email = "";
