@@ -3,27 +3,29 @@ using System.Collections.Generic;
 using System.Xml;
 using UnityEngine;
 
-public class PositionPlaceParser : MonoBehaviour {
+public class PlaceParser : MonoBehaviour {
 
-    public List<PositionPOI> poi_list = new List<PositionPOI>();
+    private List<BasePOI> poi_list = new List<BasePOI>();
 
 	// Use this for initialization
 	void Start () {
-        TextAsset textAsset = (TextAsset)Resources.Load("xml");
+        //TextAsset textAsset = (TextAsset)Resources.Load("xml");
 
-        parsePlacesXML(textAsset.text);
+        //parsePlacesXML(textAsset.text);
     }
 	
     public void parsePlacesXML(string placesXML)
     {
+
         XmlDocument xmlDoc = new XmlDocument();
         xmlDoc.LoadXml(placesXML);
 
         XmlNodeList nodeList = xmlDoc.GetElementsByTagName("result");
+        
 
         for (int i = 0; i < nodeList.Count; i++)
         {
-            poi_list.Add(new PositionPOI());
+            poi_list.Add(new BasePOI());
 
             foreach (XmlNode node in nodeList[i])
             {
@@ -79,8 +81,11 @@ public class PositionPlaceParser : MonoBehaviour {
             }
         }
 
+        this.GetComponent<PositionPOI>().startPOIinit(poi_list);
+        
 
-        foreach (PositionPOI poiObj in poi_list)
+        /*
+        foreach (BasePOI poiObj in poi_list)
         {
             Debug.Log(poiObj.poi_name);
             Debug.Log(poiObj.poi_place);
@@ -97,6 +102,6 @@ public class PositionPlaceParser : MonoBehaviour {
             Debug.Log(poiObj.poi_id);
 
             Debug.Log("---------------------------------------------------------------------");
-        }
+        }*/
     }
 }

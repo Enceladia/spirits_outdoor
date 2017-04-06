@@ -14,7 +14,7 @@ public class PositionPlayer : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         playerGo.transform.position = new Vector3(
             this.GetComponent<PositionManager>().playerPosX, 1, this.GetComponent<PositionManager>().playerPosZ);

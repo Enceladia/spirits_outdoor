@@ -7,8 +7,8 @@ public class PositionManager : MonoBehaviour {
     public float playerPosX = 0.0f;
     public float playerPosZ = 0.0f;
 
-    private float startLat = 0;
-    private float startLng = 0;
+    public float startLat = 0;
+    public float startLng = 0;
 
     IEnumerator StartGPSservice()
     {
@@ -47,28 +47,35 @@ public class PositionManager : MonoBehaviour {
 
             startLat = Input.location.lastData.latitude;
             startLng = Input.location.lastData.longitude;
+
+
+            this.GetComponent<PlaceDownload>().getPlaceXML(this.startLat, this.startLng);
         }
+
 
         // Stop service if there is no need to query location updates continuously
         //Input.location.Stop();
     }
 
-    void Start()
+    void Awake()
     {
         StartCoroutine(StartGPSservice());
-
-        //Positioniere Overworld Objekte
     }
 
     void Update()
     {
-        playerPosX = getWorldPosToUnityPos(Input.location.lastData.latitude);
-        playerPosZ = getWorldPosToUnityPos(Input.location.lastData.longitude);
+        playerPosX = getLatToUnityPos(Input.location.lastData.latitude);
+        playerPosZ = getLngToUnityPos(Input.location.lastData.longitude);
     }
 
-    private float getWorldPosToUnityPos(float pos)
+    public float getLatToUnityPos(float pos)
     {
-        return (startLat - pos) * 10000.0f;
+        return (pos - startLat) * 10000.0f;
+    }
+
+    public float getLngToUnityPos(float pos)
+    {
+        return (pos - startLng) * 10000.0f;
     }
 
 
