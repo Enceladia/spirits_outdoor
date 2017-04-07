@@ -15,3 +15,5 @@ and give it to the parsePlacesXML function from the PlaceParser Script witch rea
 of Objects. This list is given to the startPOIinit function from the PositionPOI Script that instantiates different Prefabs
 from the Objects in the List. This Instance of the POI recieves a BasePOI Component, that contains all Information about this
 Place.
+
+PositionManager -> PlaceDownload -> GooglePlaces -> PlaceParser -> PositionPOI

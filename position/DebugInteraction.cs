@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DebugInteraction : MonoBehaviour {
-    
-	void FixedUpdate () {
+public class DebugInteraction : MonoBehaviour
+{
+
+    void FixedUpdate()
+    {
         if (Input.touchCount > 0)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);

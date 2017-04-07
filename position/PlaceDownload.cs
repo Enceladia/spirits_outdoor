@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlaceDownload : MonoBehaviour {
+public class PlaceDownload : MonoBehaviour
+{
 
     //https://maps.googleapis.com/maps/api/place/nearbysearch/xml?location=47.453458,15.331112&radius=2000&types=cafe&key=AIzaSyD9Ol1_W18VIFMjlXqpZEnm4dnoZl4UOI0
 
@@ -32,6 +33,6 @@ public class PlaceDownload : MonoBehaviour {
     public void getPlaceXML(float lat, float lng)
     {
         StartCoroutine(getGooglePlaces(lat, lng));
-        
+
     }
 }

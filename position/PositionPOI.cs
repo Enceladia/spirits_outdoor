@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PositionPOI : MonoBehaviour {
-	
-	public void startPOIinit(List<BasePOI> poiList)
+public class PositionPOI : MonoBehaviour
+{
+
+    public void startPOIinit(List<BasePOI> poiList)
     {
         //ToDo: Add functions to differenciate between place types
         //ToDo: If updated List arrives, delete POI´s that are far away from the player and add new with new lat/lng
@@ -22,7 +23,6 @@ public class PositionPOI : MonoBehaviour {
             instance.GetComponent<BasePOI>().poi_typeList = bp.poi_typeList;
             instance.GetComponent<BasePOI>().poi_iconUrl = bp.poi_iconUrl;
             instance.GetComponent<BasePOI>().poi_id = bp.poi_id;
-
         }
     }
 }
