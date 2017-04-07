@@ -48,8 +48,7 @@ public class PositionManager : MonoBehaviour {
             startLat = Input.location.lastData.latitude;
             startLng = Input.location.lastData.longitude;
 
-
-            this.GetComponent<PlaceDownload>().getPlaceXML(this.startLat, this.startLng);
+            startPOIGeneration();
         }
 
 
@@ -70,13 +69,17 @@ public class PositionManager : MonoBehaviour {
 
     public float getLatToUnityPos(float pos)
     {
-        return (pos - startLat) * 10000.0f;
+        return (startLat - pos) * 10000.0f;
     }
 
     public float getLngToUnityPos(float pos)
     {
-        return (pos - startLng) * 10000.0f;
+        return (startLng - pos) * 10000.0f;
     }
 
+    public void startPOIGeneration()
+    {
+        this.GetComponent<PlaceDownload>().getPlaceXML(this.startLat, this.startLng);
 
+    }
 }

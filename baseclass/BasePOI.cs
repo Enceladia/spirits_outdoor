@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Dummi Klasse für generische Punkte
-public class BasePOI {
+public class BasePOI : MonoBehaviour{
     public string poi_name;
     public string poi_place;
     public List<String> poi_typeList = new List<String>();
