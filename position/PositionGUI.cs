@@ -6,21 +6,19 @@ using UnityEngine.UI;
 public class PositionGUI : MonoBehaviour {
 
     public GameObject poiNameGuiGo;
+    public GameObject poiDistanceGo;
 
     Text poiNameGuiText;
-
-	// Use this for initialization
+    Text poiDistanceGuiText;
+    
 	void Start () {
         poiNameGuiText = poiNameGuiGo.GetComponent<Text>();
-	}
+        poiDistanceGuiText = poiDistanceGo.GetComponent<Text>();
+    }
 
-    public void setPoiNameGui(string name)
+    public void setPoiNameGui(string name, float distance)
     {
         poiNameGuiText.text = name;
+        poiDistanceGuiText.text = distance.ToString();
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

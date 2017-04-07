@@ -17,8 +17,8 @@ public class DebugInteraction : MonoBehaviour {
                 {
 
                     GameObject.FindGameObjectWithTag("SceneManager").
-                        GetComponent<PositionGUI>().setPoiNameGui(hit.
-                        transform.parent.GetComponent<BasePOI>().poi_name);
+                        GetComponent<PositionGUI>().setPoiNameGui(hit.transform.parent.GetComponent<BasePOI>().poi_name,
+                        calculateDebugDistance(GameObject.FindGameObjectWithTag("Player").transform.position, hit.transform.position));
                 }
             }
         }
@@ -35,10 +35,19 @@ public class DebugInteraction : MonoBehaviour {
                 {
 
                     GameObject.FindGameObjectWithTag("SceneManager").
-                        GetComponent<PositionGUI>().setPoiNameGui(hit.
-                        transform.parent.gameObject.transform.GetChild(0).GetComponent<TextMesh>().text);
+                        GetComponent<PositionGUI>().setPoiNameGui(
+                        hit.transform.parent.gameObject.transform.GetChild(0).GetComponent<TextMesh>().text,
+                        calculateDebugDistance(GameObject.FindGameObjectWithTag("Player").transform.position, hit.transform.position));
+
+
                 }
             }
         }
+    }
+
+    private float calculateDebugDistance(Vector3 playerPos, Vector3 otherPos)
+    {
+        float dist = Vector3.Distance(otherPos, playerPos);
+        return dist;
     }
 }
