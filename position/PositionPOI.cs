@@ -12,17 +12,18 @@ public class PositionPOI : MonoBehaviour
         foreach (BasePOI bp in poiList)
         {
             GameObject instance = Instantiate(Resources.Load("POI_prefab", typeof(GameObject))) as GameObject;
-            instance.transform.position = new Vector3(this.GetComponent<PositionManager>().getLatToUnityPos(bp.poi_lat), 0, this.GetComponent<PositionManager>().getLngToUnityPos(bp.poi_lng));
-            instance.transform.GetChild(0).GetComponent<TextMesh>().text = bp.poi_name;
+            instance.transform.position = new Vector3(this.GetComponent<PositionManager>().getLatToUnityPos(bp.Poi_lat), 0, this.GetComponent<PositionManager>().getLngToUnityPos(bp.Poi_lng));
+            instance.transform.GetChild(0).GetComponent<TextMesh>().text = bp.Poi_name;
+
             instance.AddComponent<BasePOI>();
 
-            instance.GetComponent<BasePOI>().poi_name = bp.poi_name;
-            instance.GetComponent<BasePOI>().poi_place = bp.poi_place;
-            instance.GetComponent<BasePOI>().poi_lat = bp.poi_lat;
-            instance.GetComponent<BasePOI>().poi_lng = bp.poi_lng;
-            instance.GetComponent<BasePOI>().poi_typeList = bp.poi_typeList;
-            instance.GetComponent<BasePOI>().poi_iconUrl = bp.poi_iconUrl;
-            instance.GetComponent<BasePOI>().poi_id = bp.poi_id;
+            instance.GetComponent<BasePOI>().Poi_name = bp.Poi_name;
+            instance.GetComponent<BasePOI>().Poi_place = bp.Poi_place;
+            instance.GetComponent<BasePOI>().Poi_lat = bp.Poi_lat;
+            instance.GetComponent<BasePOI>().Poi_lng = bp.Poi_lng;
+            instance.GetComponent<BasePOI>().Poi_typeList = bp.Poi_typeList;
+            instance.GetComponent<BasePOI>().Poi_iconUrl = bp.Poi_iconUrl;
+            instance.GetComponent<BasePOI>().Poi_id = bp.Poi_id;
         }
     }
 }

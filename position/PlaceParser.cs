@@ -27,12 +27,12 @@ public class PlaceParser : MonoBehaviour
 
                 if (node.Name == "name")
                 {
-                    poi_list[i].poi_name = node.InnerText;
+                    poi_list[i].Poi_name = node.InnerText;
                 }
 
                 if (node.Name == "vicinity")
                 {
-                    poi_list[i].poi_place = node.InnerText;
+                    poi_list[i].Poi_place = node.InnerText;
 
                 }
 
@@ -46,12 +46,12 @@ public class PlaceParser : MonoBehaviour
                             {
                                 if (location.Name == "lat")
                                 {
-                                    poi_list[i].poi_lat = float.Parse(location.InnerText);
+                                    poi_list[i].Poi_lat = float.Parse(location.InnerText);
 
                                 }
                                 if (location.Name == "lng")
                                 {
-                                    poi_list[i].poi_lng = float.Parse(location.InnerText);
+                                    poi_list[i].Poi_lng = float.Parse(location.InnerText);
                                 }
                             }
                         }
@@ -60,17 +60,17 @@ public class PlaceParser : MonoBehaviour
 
                 if (node.Name == "icon")
                 {
-                    poi_list[i].poi_iconUrl = node.InnerText;
+                    poi_list[i].Poi_iconUrl = node.InnerText;
                 }
 
                 if (node.Name == "place_id")
                 {
-                    poi_list[i].poi_id = node.InnerText;
+                    poi_list[i].Poi_id = node.InnerText;
                 }
 
                 if (node.Name == "type")
                 {
-                    poi_list[i].poi_typeList.Add(node.InnerText);
+                    poi_list[i].Poi_typeList.Add(node.InnerText);
                 }
             }
         }

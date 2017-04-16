@@ -10,6 +10,8 @@ public class PositionManager : MonoBehaviour {
     public float startLat = 0;
     public float startLng = 0;
 
+    private bool startPoi = false;
+
     IEnumerator StartGPSservice()
     {
         // First, check if user has location service enabled
@@ -20,7 +22,7 @@ public class PositionManager : MonoBehaviour {
         Input.location.Start();
 
         // Wait until service initializes
-        int maxWait = 20;
+        int maxWait = 5;
         while (Input.location.status == LocationServiceStatus.Initializing && maxWait > 0)
         {
             yield return new WaitForSeconds(1);
@@ -45,15 +47,17 @@ public class PositionManager : MonoBehaviour {
             // Access granted and location value could be retrieved
             print("Location: " + Input.location.lastData.latitude + " " + Input.location.lastData.longitude + " " + Input.location.lastData.altitude + " " + Input.location.lastData.horizontalAccuracy + " " + Input.location.lastData.timestamp);
 
-            startLat = Input.location.lastData.latitude;
-            startLng = Input.location.lastData.longitude;
+            if (!startPoi)
+            {
 
-            startPOIGeneration();
+                startLat = Input.location.lastData.latitude;
+                startLng = Input.location.lastData.longitude;
+
+                startPOIGeneration();
+
+                startPoi = true;
+            }
         }
-
-
-        // Stop service if there is no need to query location updates continuously
-        //Input.location.Stop();
     }
 
     void Awake()
@@ -67,14 +71,19 @@ public class PositionManager : MonoBehaviour {
         playerPosZ = getLngToUnityPos(Input.location.lastData.longitude);
     }
 
+    private void LateUpdate()
+    {
+        StartCoroutine(StartGPSservice());
+    }
+
     public float getLatToUnityPos(float pos)
     {
-        return (startLat - pos) * 10000.0f;
+        return (pos - startLat) * 10000.0f;
     }
 
     public float getLngToUnityPos(float pos)
     {
-        return (startLng - pos) * 10000.0f;
+        return (pos - startLng) * 10000.0f;
     }
 
     public void startPOIGeneration()

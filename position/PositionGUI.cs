@@ -7,20 +7,16 @@ public class PositionGUI : MonoBehaviour
 {
 
     public GameObject poiNameGuiGo;
-    public GameObject poiDistanceGo;
 
     Text poiNameGuiText;
-    Text poiDistanceGuiText;
 
     void Start()
     {
         poiNameGuiText = poiNameGuiGo.GetComponent<Text>();
-        poiDistanceGuiText = poiDistanceGo.GetComponent<Text>();
     }
 
-    public void setPoiNameGui(string name, float distance)
+    public void setPoiNameGui(string name)
     {
         poiNameGuiText.text = name;
-        poiDistanceGuiText.text = distance.ToString();
     }
 }

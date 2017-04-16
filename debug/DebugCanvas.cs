@@ -4,18 +4,21 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class DebugCanvas : MonoBehaviour {
-
     public GameObject playerPosxGo;
     public GameObject playerPoszGo;
 
     public GameObject poi_countGo;
     public GameObject xmlUrlGo;
 
+    public GameObject playerObjNameGo;
+
     Text poi_countText;
     Text xmlUrlText;
 
     Text playerPosxText;
     Text playerPoszText;
+
+    Text playerObjNameText;
 
     // Use this for initialization
     void Start()
@@ -25,6 +28,8 @@ public class DebugCanvas : MonoBehaviour {
 
         poi_countText = poi_countGo.GetComponent<Text>();
         xmlUrlText = xmlUrlGo.GetComponent<Text>();
+
+        playerObjNameText = playerObjNameGo.GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -49,5 +54,12 @@ public class DebugCanvas : MonoBehaviour {
 
         //xmlUrlText.text = this.GetComponent<PlaceDownload>().xml;
         xmlUrlText.text = this.GetComponent<PlaceDownload>().url;
+
+        if (GameObject.FindGameObjectWithTag("PlayerManager"))
+        {
+            playerObjNameText.text = GameObject.FindGameObjectWithTag("PlayerManager")
+                .GetComponent<PlayerManager>().bp.Player_name;
+
+        }
     }
 }
